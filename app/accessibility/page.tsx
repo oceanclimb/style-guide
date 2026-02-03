@@ -1,6 +1,6 @@
 export default function AccessibilityPage() {
     return (
-        <div className="p-8 max-w-6xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>
                 Accessibility Implementation Guide
             </h1>
@@ -9,7 +9,6 @@ export default function AccessibilityPage() {
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
                 A comprehensive guide to implementing accessible practices in our application.

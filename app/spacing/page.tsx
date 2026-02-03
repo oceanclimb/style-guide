@@ -71,14 +71,13 @@ export default function SpacingPage() {
     ];
 
     return (
-        <div className="p-8 max-w-6xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>Spacing</h1>
             <p
                 className="mb-8"
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
                 Our spacing system uses a consistent scale to create visual rhythm and hierarchy. The

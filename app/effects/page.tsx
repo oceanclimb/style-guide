@@ -153,18 +153,16 @@ export default function EffectsPage() {
     ];
 
     return (
-        <div className="p-8 max-w-7xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>Effects</h1>
             <p
                 className="mb-12"
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
                 A comprehensive collection of animation effects for creating engaging user experiences.
-                Click the copy icon to copy the class name to your clipboard.
             </p>
 
             {/* Fade Variations */}

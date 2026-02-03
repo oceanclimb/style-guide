@@ -1,17 +1,15 @@
 export default function TypographyPage() {
     return (
-        <div className="p-8 max-w-6xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>Typography</h1>
             <p
                 className="mb-8"
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
-                Our typography system uses Inter as the primary font with a carefully crafted type scale
-                for hierarchy and readability.
+                Our typography system uses Inter as the primary font.
             </p>
 
             {/* Type Scale */}

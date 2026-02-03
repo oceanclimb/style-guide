@@ -132,18 +132,16 @@ export default function ColorsPage() {
     ];
 
     return (
-        <div className="p-8 max-w-6xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>Colors</h1>
             <p
                 className="mb-8"
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
-                Our color system is built on semantic naming and accessibility. All colors meet WCAG 2.1 AA
-                contrast requirements and adapt seamlessly between light and dark modes.
+                All colors meet WCAG 2.1 AA contrast requirements and adapt seamlessly between light and dark modes.
             </p>
 
             {/* Gray Scale */}
@@ -173,7 +171,7 @@ export default function ColorsPage() {
                     className="mb-6"
                     style={{ color: "var(--text-secondary)", fontSize: "var(--font-size-body)" }}
                 >
-                    Base color: #2BA84A (Medium Jungle). Used for primary actions, CTAs, and success states.
+                    Base color: green-500 (#2BA84A). Used for primary actions, CTAs, and success states.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {greenScale.map((color) => (

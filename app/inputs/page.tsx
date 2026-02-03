@@ -26,18 +26,17 @@ export default function InputsPage() {
     );
 
     return (
-        <div className="p-8 max-w-6xl">
+        <div className="p-8">
             <h1 style={{ color: "var(--text-primary)", marginBottom: "8px" }}>Inputs & Select Menus</h1>
             <p
                 className="mb-8"
                 style={{
                     color: "var(--text-secondary)",
                     fontSize: "var(--font-size-body-lg)",
-                    maxWidth: "700px",
                 }}
             >
                 Form inputs and select menus in various sizes with consistent styling, hover states, and
-                focus indicators. All components support both light and dark modes.
+                focus indicators.
             </p>
 
             {/* Text Inputs */}
