@@ -810,35 +810,50 @@ function MoreOptionsButton({ visible }: { visible: boolean }) {
                     e.stopPropagation();
                     setIsOpen(!isOpen);
                 }}
+                className={`more-options-btn ${isOpen ? "open" : ""}`}
                 style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "32px",
-                    height: "32px",
-                    border: "none",
-                    background: isOpen ? "var(--bg-surface-secondary)" : "transparent",
-                    color: isOpen ? "var(--text-primary)" : "var(--text-secondary)",
-                    borderRadius: "5px",
-                    cursor: "pointer",
                     opacity: visible || isOpen ? 1 : 0,
-                    transition: "all var(--transition-default)",
-                }}
-                onMouseEnter={(e) => {
-                    if (!isOpen) {
-                        e.currentTarget.style.background = "var(--bg-surface-secondary)";
-                        e.currentTarget.style.color = "var(--text-primary)";
-                    }
-                }}
-                onMouseLeave={(e) => {
-                    if (!isOpen) {
-                        e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "var(--text-secondary)";
-                    }
                 }}
             >
                 <DotsThree size={20} weight="bold" />
             </button>
+
+            <style jsx>{`
+                .more-options-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 32px;
+                    height: 32px;
+                    border: 1px solid transparent;
+                    background: transparent;
+                    color: var(--text-secondary);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all var(--transition-default);
+                }
+
+                .more-options-btn.open {
+                    background: var(--bg-surface-secondary);
+                    color: var(--text-primary);
+                }
+
+                /* Light Mode Hover */
+                .more-options-btn:hover {
+                    background: white;
+                    border-color: var(--border-default);
+                    color: var(--text-primary);
+                    box-shadow: var(--shadow-sm);
+                }
+
+                /* Dark Mode Hover */
+                :global([data-theme="dark"]) .more-options-btn:hover {
+                    background: black;
+                    color: white;
+                    border-color: transparent;
+                    box-shadow: none;
+                }
+            `}</style>
 
             {isOpen && (
                 <div
