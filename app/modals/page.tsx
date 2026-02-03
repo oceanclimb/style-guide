@@ -483,7 +483,9 @@ export default function ModalsPage() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        backgroundColor: "var(--modal-overlay)",
+                        backdropFilter: "blur(5px)",
+                        WebkitBackdropFilter: "blur(5px)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -505,6 +507,7 @@ export default function ModalsPage() {
                             flexDirection: "column",
                             overflow: "hidden",
                             position: "relative",
+                            border: "1px solid var(--border-default)",
                         }}
                     >
                         {/* Modal Header */}
