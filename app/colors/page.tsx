@@ -1,15 +1,25 @@
 "use client";
 
+import { useState } from "react";
+import { Check, Copy } from "@phosphor-icons/react";
+
 interface ColorSwatchProps {
     name: string;
     hex: string;
-    rgb: string;
 }
 
-function ColorSwatch({ name, hex, rgb }: ColorSwatchProps) {
+function ColorSwatch({ name, hex }: ColorSwatchProps) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(name);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
         <div
-            className="flex items-center gap-4 p-3 rounded-md"
+            className="group relative flex items-center gap-4 p-3 rounded-md"
             style={{
                 backgroundColor: "var(--bg-surface)",
                 border: "1px solid var(--border-default)",
@@ -35,44 +45,90 @@ function ColorSwatch({ name, hex, rgb }: ColorSwatchProps) {
                 >
                     {hex}
                 </div>
-                <div
-                    className="font-mono text-xs"
-                    style={{ color: "var(--text-tertiary)", fontSize: "10px" }}
-                >
-                    {rgb}
-                </div>
             </div>
+
+            <button
+                onClick={handleCopy}
+                className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-md hover:bg-[var(--bg-surface-secondary)]"
+                title="Copy variable name"
+                type="button"
+            >
+                {copied ? (
+                    <Check size={18} color="var(--primary-default)" />
+                ) : (
+                    <Copy size={18} color="var(--text-secondary)" />
+                )}
+            </button>
         </div>
     );
 }
 
 export default function ColorsPage() {
     const greenScale = [
-        { name: "green-50", hex: "#ECFDF3", rgb: "rgb(236, 253, 243)" },
-        { name: "green-100", hex: "#D1FAE5", rgb: "rgb(209, 250, 229)" },
-        { name: "green-200", hex: "#A7F3C9", rgb: "rgb(167, 243, 201)" },
-        { name: "green-300", hex: "#6EE7A0", rgb: "rgb(110, 231, 160)" },
-        { name: "green-400", hex: "#34D970", rgb: "rgb(52, 217, 112)" },
-        { name: "green-500", hex: "#2BA84A", rgb: "rgb(43, 168, 74)" },
-        { name: "green-600", hex: "#22863A", rgb: "rgb(34, 134, 58)" },
-        { name: "green-700", hex: "#1B6B2F", rgb: "rgb(27, 107, 47)" },
-        { name: "green-800", hex: "#165626", rgb: "rgb(22, 86, 38)" },
-        { name: "green-900", hex: "#11401D", rgb: "rgb(17, 64, 29)" },
-        { name: "green-950", hex: "#0A2912", rgb: "rgb(10, 41, 18)" },
+        { name: "green-50", hex: "#ECFDF3" },
+        { name: "green-100", hex: "#D1FAE5" },
+        { name: "green-200", hex: "#A7F3C9" },
+        { name: "green-300", hex: "#6EE7A0" },
+        { name: "green-400", hex: "#34D970" },
+        { name: "green-500", hex: "#2BA84A" },
+        { name: "green-600", hex: "#22863A" },
+        { name: "green-700", hex: "#1B6B2F" },
+        { name: "green-800", hex: "#165626" },
+        { name: "green-900", hex: "#11401D" },
+        { name: "green-950", hex: "#0A2912" },
     ];
 
     const grayScale = [
-        { name: "gray-50", hex: "#FAFAFA", rgb: "rgb(250, 250, 250)" },
-        { name: "gray-100", hex: "#F4F4F5", rgb: "rgb(244, 244, 245)" },
-        { name: "gray-200", hex: "#E4E4E7", rgb: "rgb(228, 228, 231)" },
-        { name: "gray-300", hex: "#D4D4D8", rgb: "rgb(212, 212, 216)" },
-        { name: "gray-400", hex: "#A1A1AA", rgb: "rgb(161, 161, 170)" },
-        { name: "gray-500", hex: "#71717A", rgb: "rgb(113, 113, 122)" },
-        { name: "gray-600", hex: "#52525B", rgb: "rgb(82, 82, 91)" },
-        { name: "gray-700", hex: "#3F3F46", rgb: "rgb(63, 63, 70)" },
-        { name: "gray-800", hex: "#27272A", rgb: "rgb(39, 39, 42)" },
-        { name: "gray-900", hex: "#18181B", rgb: "rgb(24, 24, 27)" },
-        { name: "gray-950", hex: "#09090B", rgb: "rgb(9, 9, 11)" },
+        { name: "white", hex: "#FFFFFF" },
+        { name: "black", hex: "#000000" },
+        { name: "gray-50", hex: "#FAFAFA" },
+        { name: "gray-100", hex: "#F4F4F5" },
+        { name: "gray-200", hex: "#E4E4E7" },
+        { name: "gray-300", hex: "#D4D4D8" },
+        { name: "gray-400", hex: "#A1A1AA" },
+        { name: "gray-500", hex: "#71717A" },
+        { name: "gray-600", hex: "#52525B" },
+        { name: "gray-700", hex: "#3F3F46" },
+        { name: "gray-800", hex: "#27272A" },
+        { name: "gray-900", hex: "#18181B" },
+        { name: "gray-950", hex: "#09090B" },
+    ];
+
+    const yellowScale = [
+        { name: "yellow-50", hex: "#FEFCE8" },
+        { name: "yellow-100", hex: "#FEF9C3" },
+        { name: "yellow-200", hex: "#FEF08A" },
+        { name: "yellow-300", hex: "#FDE047" },
+    ];
+
+    const warningScale = [
+        { name: "warning-50", hex: "#FFFBEB" },
+        { name: "warning-100", hex: "#FEF3C7" },
+        { name: "warning-200", hex: "#FDE68A" },
+        { name: "warning-300", hex: "#FCD34D" },
+    ];
+
+    const errorScale = [
+        { name: "error-50", hex: "#FEF2F2" },
+        { name: "error-100", hex: "#FEE2E2" },
+        { name: "error-200", hex: "#FECACA" },
+        { name: "error-300", hex: "#FCA5A5" },
+        { name: "error-400", hex: "#F87171" },
+        { name: "error-500", hex: "#F55757" },
+    ];
+
+    const infoScale = [
+        { name: "info-50", hex: "#EFF6FF" },
+        { name: "info-100", hex: "#DBEAFE" },
+        { name: "info-200", hex: "#BFDBFE" },
+        { name: "info-300", hex: "#93C5FD" },
+    ];
+
+    const purpleScale = [
+        { name: "purple-50", hex: "#FAF5FF" },
+        { name: "purple-100", hex: "#F3E8FF" },
+        { name: "purple-200", hex: "#E9D5FF" },
+        { name: "purple-300", hex: "#D8B4FE" },
     ];
 
     return (
@@ -89,6 +145,24 @@ export default function ColorsPage() {
                 Our color system is built on semantic naming and accessibility. All colors meet WCAG 2.1 AA
                 contrast requirements and adapt seamlessly between light and dark modes.
             </p>
+
+            {/* Gray Scale */}
+            <section className="mb-12">
+                <h2 style={{ color: "var(--text-primary)", marginBottom: "16px" }}>
+                    Gray Scale (Neutral)
+                </h2>
+                <p
+                    className="mb-6"
+                    style={{ color: "var(--text-secondary)", fontSize: "var(--font-size-body)" }}
+                >
+                    Neutral colors for backgrounds, text, borders, and UI elements.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {grayScale.map((color) => (
+                        <ColorSwatch key={color.name} {...color} />
+                    ))}
+                </div>
+            </section>
 
             {/* Green Scale */}
             <section className="mb-12">
@@ -108,21 +182,68 @@ export default function ColorsPage() {
                 </div>
             </section>
 
-            {/* Gray Scale */}
+            {/* Accent Colors */}
             <section className="mb-12">
                 <h2 style={{ color: "var(--text-primary)", marginBottom: "16px" }}>
-                    Gray Scale (Neutral)
+                    Accent Colors
                 </h2>
                 <p
                     className="mb-6"
                     style={{ color: "var(--text-secondary)", fontSize: "var(--font-size-body)" }}
                 >
-                    Neutral colors for backgrounds, text, borders, and UI elements.
+                    Secondary colors for warnings, errors, information, and other accents.
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {grayScale.map((color) => (
-                        <ColorSwatch key={color.name} {...color} />
-                    ))}
+
+                <div className="space-y-8">
+                    {/* Yellow */}
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold text-[var(--text-secondary)]">Yellow</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            {yellowScale.map((color) => (
+                                <ColorSwatch key={color.name} {...color} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Warning (Orange) */}
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold text-[var(--text-secondary)]">Warning (Orange)</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            {warningScale.map((color) => (
+                                <ColorSwatch key={color.name} {...color} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Error (Red) */}
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold text-[var(--text-secondary)]">Error (Red)</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            {errorScale.map((color) => (
+                                <ColorSwatch key={color.name} {...color} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Info (Blue) */}
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold text-[var(--text-secondary)]">Info (Blue)</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            {infoScale.map((color) => (
+                                <ColorSwatch key={color.name} {...color} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Purple */}
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold text-[var(--text-secondary)]">Purple</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            {purpleScale.map((color) => (
+                                <ColorSwatch key={color.name} {...color} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 

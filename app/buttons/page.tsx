@@ -376,7 +376,7 @@ export default function ButtonsPage() {
                             e.currentTarget.style.backgroundColor = "var(--destructive-default)";
                         }}
                     >
-                        Delete
+                        Small
                     </button>
 
                     <button
@@ -397,7 +397,28 @@ export default function ButtonsPage() {
                             e.currentTarget.style.backgroundColor = "var(--destructive-default)";
                         }}
                     >
-                        Remove
+                        Medium
+                    </button>
+
+                    <button
+                        className="font-semibold rounded-md transition-colors"
+                        style={{
+                            backgroundColor: "var(--destructive-default)",
+                            color: "var(--destructive-text)",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
+                            height: "44px",
+                            padding: "0 20px",
+                            fontSize: "16px",
+                            cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--destructive-hover)";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--destructive-default)";
+                        }}
+                    >
+                        Large
                     </button>
 
                     <button
