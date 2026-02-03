@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import { CaretUp, CaretDown, DotsThree, CaretLeft, CaretRight, PencilSimple, Copy, Trash } from "@phosphor-icons/react";
+import { CaretUp, CaretDown, DotsThree, CaretLeft, CaretRight, PencilSimple, Copy, Trash, Check } from "@phosphor-icons/react";
 
 // ============================================
 // DATA SETS
@@ -591,57 +591,24 @@ function SortableHeader<T>({ label, sortKey, currentSortKey, sortDirection, onSo
 }
 
 function FilterInput({ placeholder, value, onChange }: { placeholder: string; value: string; onChange: (value: string) => void }) {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-
     return (
         <input
             type="text"
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="transition-all"
             style={{
                 width: "100%",
                 height: "30px",
-                padding: "0 var(--spacing-2)",
-                border: `1px solid ${isFocused ? "var(--green-400)" : isHovered ? "var(--border-strong)" : "var(--border-default)"}`,
-                borderRadius: "5px",
-                background: "var(--bg-surface)",
+                padding: "0 12px",
+                fontSize: "13px",
+                backgroundColor: "var(--bg-surface)",
                 color: "var(--text-primary)",
-                fontSize: "var(--font-size-body-sm)",
-                outline: "none",
-                transition: "all var(--transition-default)",
-                boxShadow: isFocused ? "0 0 0 2px var(--green-100)" : "none",
-            }}
-        />
-    );
-}
-
-function FilterSelect({ value, onChange, options, placeholder }: { value: string; onChange: (value: string) => void; options: string[]; placeholder: string }) {
-    const [isHovered, setIsHovered] = useState(false);
-
-    return (
-        <select
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            style={{
-                width: "100%",
-                height: "30px",
-                padding: "0 var(--spacing-2)",
-                border: `1px solid ${isHovered ? "var(--border-strong)" : "var(--border-default)"}`,
+                border: "1px solid var(--border-default)",
                 borderRadius: "5px",
-                background: "var(--bg-surface)",
-                color: "var(--text-primary)",
-                fontSize: "var(--font-size-body-sm)",
                 outline: "none",
-                cursor: "pointer",
-                transition: "all var(--transition-default)",
+                fontWeight: 400,
             }}
             onFocus={(e) => {
                 e.currentTarget.style.borderColor = "var(--green-400)";
@@ -651,14 +618,153 @@ function FilterSelect({ value, onChange, options, placeholder }: { value: string
                 e.currentTarget.style.borderColor = "var(--border-default)";
                 e.currentTarget.style.boxShadow = "none";
             }}
-        >
-            <option value="">{placeholder}</option>
-            {options.map((option) => (
-                <option key={option} value={option}>
-                    {option}
-                </option>
-            ))}
-        </select>
+        />
+    );
+}
+
+function FilterSelect({ value, onChange, options, placeholder }: { value: string; onChange: (value: string) => void; options: string[]; placeholder: string }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
+    return (
+        <div ref={containerRef} style={{ position: "relative" }}>
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="transition-all"
+                style={{
+                    width: "100%",
+                    height: "30px",
+                    padding: "0 12px",
+                    fontSize: "13px",
+                    backgroundColor: "var(--bg-surface)",
+                    color: "var(--text-primary)",
+                    border: "1px solid var(--border-default)",
+                    borderRadius: "5px",
+                    outline: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    textAlign: "left",
+                    borderColor: isOpen ? "var(--green-400)" : "var(--border-default)",
+                    boxShadow: isOpen ? "0 0 0 2px var(--green-100)" : "none",
+                    fontWeight: 400,
+                }}
+                onMouseEnter={(e) => {
+                    if (!isOpen) e.currentTarget.style.borderColor = "var(--green-400)";
+                }}
+                onMouseLeave={(e) => {
+                    if (!isOpen) e.currentTarget.style.borderColor = "var(--border-default)";
+                }}
+            >
+                <span>{value || placeholder}</span>
+                <CaretDown size={14} />
+            </button>
+            {isOpen && (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "calc(100% + 4px)",
+                        left: 0,
+                        right: 0,
+                        backgroundColor: "var(--bg-surface)",
+                        border: "1px solid var(--border-default)",
+                        borderRadius: "5px",
+                        boxShadow: "var(--shadow-lg)",
+                        zIndex: 50,
+                        overflow: "hidden",
+                    }}
+                >
+                    <button
+                        onClick={() => {
+                            onChange("");
+                            setIsOpen(false);
+                        }}
+                        style={{
+                            width: "100%",
+                            padding: "8px 12px",
+                            fontSize: "13px",
+                            backgroundColor: value === "" ? "var(--primary-subtle-bg)" : "transparent",
+                            color: value === "" ? "var(--primary-subtle-text)" : "var(--text-primary)",
+                            border: "none",
+                            cursor: "pointer",
+                            textAlign: "left",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                        onMouseEnter={(e) => {
+                            if (value !== "") e.currentTarget.style.backgroundColor = "var(--bg-surface-secondary)";
+                        }}
+                        onMouseLeave={(e) => {
+                            if (value !== "") e.currentTarget.style.backgroundColor = "transparent";
+                        }}
+                    >
+                        <span>{placeholder}</span>
+                        {value === "" && <Check size={14} weight="bold" />}
+                    </button>
+                    {options.map((option) => (
+                        <button
+                            key={option}
+                            onClick={() => {
+                                onChange(option);
+                                setIsOpen(false);
+                            }}
+                            style={{
+                                width: "100%",
+                                padding: "8px 12px",
+                                fontSize: "13px",
+                                backgroundColor:
+                                    value === option
+                                        ? "var(--primary-subtle-bg)"
+                                        : "transparent",
+                                color:
+                                    value === option
+                                        ? "var(--primary-subtle-text)"
+                                        : "var(--text-primary)",
+                                border: "none",
+                                cursor: "pointer",
+                                textAlign: "left",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                            }}
+                            onMouseEnter={(e) => {
+                                if (value !== option) {
+                                    e.currentTarget.style.backgroundColor =
+                                        "var(--bg-surface-secondary)";
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                if (value !== option) {
+                                    e.currentTarget.style.backgroundColor = "transparent";
+                                }
+                            }}
+                        >
+                            <span>{option}</span>
+                            {value === option && (
+                                <Check size={14} weight="bold" />
+                            )}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 }
 
