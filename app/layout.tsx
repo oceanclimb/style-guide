@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Design System Style Guide",
+  title: "Style Guide",
   description: "Comprehensive design system documentation with all UI components, color tokens, typography, and design patterns.",
 };
 

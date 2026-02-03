@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { CaretUp, CaretDown, DotsThree, CaretLeft, CaretRight } from "@phosphor-icons/react";
+import React, { useState, useMemo, useEffect } from "react";
+import { CaretUp, CaretDown, DotsThree, CaretLeft, CaretRight, PencilSimple, Copy, Trash } from "@phosphor-icons/react";
 
 // ============================================
 // DATA SETS
@@ -81,7 +81,7 @@ export default function DataDisplayPage() {
     return (
         <div style={{ padding: "var(--spacing-8)" }}>
             <div style={{ marginBottom: "var(--spacing-8)" }}>
-                <h1 style={{ marginBottom: "var(--spacing-2)" }}>Data Display</h1>
+                <h1 style={{ marginBottom: "var(--spacing-2)" }}>Tables</h1>
                 <p style={{ color: "var(--text-secondary)", fontSize: "var(--font-size-body-lg)" }}>
                     Interactive tables with sortable columns, filterable headers, and pagination.
                 </p>
@@ -152,11 +152,11 @@ function BasicTable() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead style={{ position: "sticky", top: 0, backgroundColor: "var(--bg-surface-secondary)", zIndex: 10 }}>
                     <tr style={{ borderBottom: "1px solid var(--border-default)" }}>
-                        <SortableHeader label="Product Name" sortKey="name" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
-                        <SortableHeader label="Category" sortKey="category" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
-                        <SortableHeader label="Price" sortKey="price" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
-                        <SortableHeader label="Stock" sortKey="stock" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
-                        <SortableHeader label="Status" sortKey="status" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                        <SortableHeader padding="var(--spacing-2) var(--spacing-4)" label="Product Name" sortKey="name" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                        <SortableHeader padding="var(--spacing-2) var(--spacing-4)" label="Category" sortKey="category" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                        <SortableHeader padding="var(--spacing-2) var(--spacing-4)" label="Price" sortKey="price" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                        <SortableHeader padding="var(--spacing-2) var(--spacing-4)" label="Stock" sortKey="stock" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                        <SortableHeader padding="var(--spacing-2) var(--spacing-4)" label="Status" sortKey="status" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
                         <th style={{ width: "60px" }}></th>
                     </tr>
                 </thead>
@@ -235,7 +235,7 @@ function FilteredTable() {
         <TableContainer maxHeight="400px">
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead style={{ position: "sticky", top: 0, backgroundColor: "var(--bg-surface-secondary)", zIndex: 10 }}>
-                    <tr style={{ borderBottom: "1px solid var(--border-default)" }}>
+                    <tr style={{ borderBottom: "none" }}>
                         <SortableHeader label="Customer Name" sortKey="name" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
                         <SortableHeader label="Email" sortKey="email" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
                         <SortableHeader label="Location" sortKey="location" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
@@ -244,22 +244,22 @@ function FilteredTable() {
                         <th style={{ width: "60px" }}></th>
                     </tr>
                     <tr style={{ backgroundColor: "var(--bg-surface-secondary)" }}>
-                        <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                        <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                             <FilterInput
                                 placeholder="Filter name..."
                                 value={filters.name}
                                 onChange={(value) => setFilters({ ...filters, name: value })}
                             />
                         </th>
-                        <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}></th>
-                        <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                        <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}></th>
+                        <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                             <FilterInput
                                 placeholder="Filter location..."
                                 value={filters.location}
                                 onChange={(value) => setFilters({ ...filters, location: value })}
                             />
                         </th>
-                        <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                        <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                             <FilterSelect
                                 value={filters.tier}
                                 onChange={(value) => setFilters({ ...filters, tier: value })}
@@ -357,7 +357,7 @@ function PaginatedTable() {
             <TableContainer maxHeight="500px">
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                     <thead style={{ position: "sticky", top: 0, backgroundColor: "var(--bg-surface-secondary)", zIndex: 10 }}>
-                        <tr style={{ borderBottom: "1px solid var(--border-default)" }}>
+                        <tr style={{ borderBottom: "none" }}>
                             <SortableHeader label="Order #" sortKey="orderNumber" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
                             <SortableHeader label="Customer" sortKey="customer" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
                             <SortableHeader label="Product" sortKey="product" currentSortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
@@ -367,15 +367,15 @@ function PaginatedTable() {
                             <th style={{ width: "60px" }}></th>
                         </tr>
                         <tr style={{ backgroundColor: "var(--bg-surface-secondary)" }}>
-                            <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}></th>
-                            <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                            <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}></th>
+                            <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                                 <FilterInput
                                     placeholder="Filter customer..."
                                     value={filters.customer}
                                     onChange={(value) => setFilters({ ...filters, customer: value })}
                                 />
                             </th>
-                            <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                            <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                                 <FilterInput
                                     placeholder="Filter product..."
                                     value={filters.product}
@@ -383,7 +383,7 @@ function PaginatedTable() {
                                 />
                             </th>
                             <th></th>
-                            <th style={{ padding: "var(--spacing-1) var(--spacing-2)" }}>
+                            <th style={{ padding: "var(--spacing-1) var(--spacing-4) var(--spacing-2) var(--spacing-4)", textAlign: "left" }}>
                                 <FilterSelect
                                     value={filters.status}
                                     onChange={(value) => setFilters({ ...filters, status: value })}
@@ -544,9 +544,10 @@ interface SortableHeaderProps<T> {
     currentSortKey: T | null;
     sortDirection: SortDirection;
     onSort: (key: T) => void;
+    padding?: string;
 }
 
-function SortableHeader<T>({ label, sortKey, currentSortKey, sortDirection, onSort }: SortableHeaderProps<T>) {
+function SortableHeader<T>({ label, sortKey, currentSortKey, sortDirection, onSort, padding = "var(--spacing-2) var(--spacing-4) var(--spacing-1) var(--spacing-4)" }: SortableHeaderProps<T>) {
     const isActive = currentSortKey === sortKey;
     const [isHovered, setIsHovered] = React.useState(false);
 
@@ -556,7 +557,7 @@ function SortableHeader<T>({ label, sortKey, currentSortKey, sortDirection, onSo
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             style={{
-                padding: "var(--spacing-2) var(--spacing-4)",
+                padding,
                 textAlign: "left",
                 cursor: "pointer",
                 userSelect: "none",
@@ -661,33 +662,136 @@ function FilterSelect({ value, onChange, options, placeholder }: { value: string
     );
 }
 
+
+
+// ... existing code ...
+
 function MoreOptionsButton({ visible }: { visible: boolean }) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    // Close menu when clicking outside (simple backdrop approach)
+    useEffect(() => {
+        if (isOpen) {
+            const handleEscape = (e: KeyboardEvent) => {
+                if (e.key === "Escape") setIsOpen(false);
+            };
+            document.addEventListener("keydown", handleEscape);
+            return () => document.removeEventListener("keydown", handleEscape);
+        }
+    }, [isOpen]);
+
+    return (
+        <div style={{ position: "relative", display: "inline-block" }}>
+            {isOpen && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        zIndex: 15,
+                        cursor: "default",
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsOpen(false);
+                    }}
+                />
+            )}
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setIsOpen(!isOpen);
+                }}
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "32px",
+                    height: "32px",
+                    border: "none",
+                    background: isOpen ? "var(--bg-surface-secondary)" : "transparent",
+                    color: isOpen ? "var(--text-primary)" : "var(--text-secondary)",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    opacity: visible || isOpen ? 1 : 0,
+                    transition: "all var(--transition-default)",
+                }}
+                onMouseEnter={(e) => {
+                    if (!isOpen) {
+                        e.currentTarget.style.background = "var(--bg-surface-secondary)";
+                        e.currentTarget.style.color = "var(--text-primary)";
+                    }
+                }}
+                onMouseLeave={(e) => {
+                    if (!isOpen) {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--text-secondary)";
+                    }
+                }}
+            >
+                <DotsThree size={20} weight="bold" />
+            </button>
+
+            {isOpen && (
+                <div
+                    style={{
+                        position: "absolute",
+                        right: "100%",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        marginRight: "10px",
+                        backgroundColor: "var(--bg-surface)",
+                        border: "1px solid var(--border-default)",
+                        borderRadius: "var(--radius-md)",
+                        boxShadow: "var(--shadow-lg)",
+                        padding: "var(--spacing-1)",
+                        zIndex: 20,
+                        minWidth: "160px",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <ContextMenuItem icon={PencilSimple} label="Edit" onClick={() => setIsOpen(false)} />
+                    <ContextMenuItem icon={Copy} label="Duplicate" onClick={() => setIsOpen(false)} />
+                    <div style={{ height: "1px", backgroundColor: "var(--border-default)", margin: "var(--spacing-1) 0" }} />
+                    <ContextMenuItem icon={Trash} label="Delete" isDestructive onClick={() => setIsOpen(false)} />
+                </div>
+            )}
+        </div>
+    );
+}
+
+function ContextMenuItem({ label, icon: Icon, isDestructive = false, onClick }: any) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <button
+            onClick={onClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                width: "32px",
-                height: "32px",
+                gap: "var(--spacing-2)",
+                width: "100%",
+                padding: "var(--spacing-2) var(--spacing-3)",
                 border: "none",
-                background: "transparent",
-                color: "var(--text-secondary)",
-                borderRadius: "5px",
+                background: isHovered
+                    ? (isDestructive ? "var(--error-50)" : "var(--bg-surface-secondary)")
+                    : "transparent",
+                color: isDestructive ? "var(--error-700)" : "var(--text-primary)",
+                borderRadius: "var(--radius-sm)",
                 cursor: "pointer",
-                opacity: visible ? 1 : 0,
-                transition: "all var(--transition-default)",
-            }}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.background = "var(--bg-surface-secondary)";
-                e.currentTarget.style.color = "var(--text-primary)";
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "var(--text-secondary)";
+                fontSize: "var(--font-size-body-sm)",
+                textAlign: "left",
+                transition: "all var(--transition-fast)",
             }}
         >
-            <DotsThree size={20} weight="bold" />
+            {Icon && <Icon size={16} />}
+            {label}
         </button>
     );
 }

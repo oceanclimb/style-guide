@@ -10,8 +10,6 @@ import {
     Desktop,
     Textbox,
     CursorClick,
-    Bell,
-    Compass,
     FrameCorners,
     Table,
     Eye,
@@ -25,18 +23,16 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
+    { name: "Accessibility", href: "/accessibility", icon: <Eye size={20} /> },
+    { name: "Buttons", href: "/buttons", icon: <CursorClick size={20} /> },
     { name: "Colors", href: "/colors", icon: <Palette size={20} /> },
-    { name: "Typography", href: "/typography", icon: <TextAa size={20} /> },
-    { name: "Spacing", href: "/spacing", icon: <Ruler size={20} /> },
     { name: "Effects", href: "/effects", icon: <Sparkle size={20} /> },
     { name: "Icons", href: "/icons", icon: <Desktop size={20} /> },
     { name: "Inputs", href: "/inputs", icon: <Textbox size={20} /> },
-    { name: "Buttons", href: "/buttons", icon: <CursorClick size={20} /> },
-    { name: "Feedback", href: "/feedback", icon: <Bell size={20} /> },
-    { name: "Navigation", href: "/navigation", icon: <Compass size={20} /> },
-    { name: "Overlays", href: "/overlays", icon: <FrameCorners size={20} /> },
-    { name: "Data Display", href: "/data-display", icon: <Table size={20} /> },
-    { name: "Accessibility", href: "/accessibility", icon: <Eye size={20} /> },
+    { name: "Modals", href: "/modals", icon: <FrameCorners size={20} /> },
+    { name: "Spacing", href: "/spacing", icon: <Ruler size={20} /> },
+    { name: "Tables", href: "/tables", icon: <Table size={20} /> },
+    { name: "Typography", href: "/typography", icon: <TextAa size={20} /> },
 ];
 
 interface SidebarProps {

@@ -2,13 +2,13 @@ import { Sparkle, Palette, Code } from "@phosphor-icons/react/dist/ssr";
 
 export default function Home() {
   return (
-    <div className="p-8 max-w-5xl">
+    <div className="p-8">
       {/* Hero Section */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <Sparkle size={40} weight="duotone" style={{ color: "var(--primary-default)" }} />
           <h1 style={{ color: "var(--text-primary)", margin: 0 }}>
-            Design System Style Guide
+            Style Guide
           </h1>
         </div>
         <p
@@ -17,12 +17,10 @@ export default function Home() {
             fontSize: "var(--font-size-body-lg)",
             lineHeight: "var(--line-height-body-lg)",
             color: "var(--text-secondary)",
-            maxWidth: "700px",
           }}
         >
           A comprehensive design system built with Next.js and Tailwind CSS. Explore our color
-          palettes, typography, components, and design patterns—all optimized for both light and
-          dark modes.
+          palettes, typography, components, and design patterns.
         </p>
       </div>
 
@@ -146,44 +144,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </div>
-
-      {/* Getting Started */}
-      <div>
-        <h2 style={{ color: "var(--text-primary)", marginBottom: "16px" }}>
-          Getting Started
-        </h2>
-        <p style={{ color: "var(--text-secondary)", marginBottom: "16px" }}>
-          Use the navigation menu on the left to explore different sections of the design system.
-          Each page includes live examples, code snippets, and usage guidelines.
-        </p>
-        <div className="flex gap-4">
-          <a
-            href="/colors"
-            className="inline-flex items-center justify-center px-5 py-2 rounded-md font-semibold transition-colors no-underline"
-            style={{
-              backgroundColor: "var(--primary-default)",
-              color: "var(--primary-text)",
-              height: "36px",
-              fontSize: "var(--font-size-body)",
-            }}
-          >
-            Explore Colors
-          </a>
-          <a
-            href="/buttons"
-            className="inline-flex items-center justify-center px-5 py-2 rounded-md font-semibold transition-colors no-underline"
-            style={{
-              backgroundColor: "var(--secondary-default)",
-              color: "var(--secondary-text)",
-              border: "1px solid var(--secondary-border)",
-              height: "36px",
-              fontSize: "var(--font-size-body)",
-            }}
-          >
-            View Components
-          </a>
-        </div>
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ export default function ButtonsPage() {
                             height: "30px",
                             padding: "0 12px",
                             fontSize: "12px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         onMouseEnter={(e) => {
@@ -69,7 +69,7 @@ export default function ButtonsPage() {
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         onMouseEnter={(e) => {
@@ -91,7 +91,7 @@ export default function ButtonsPage() {
                             height: "44px",
                             padding: "0 20px",
                             fontSize: "16px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         onMouseEnter={(e) => {
@@ -113,7 +113,7 @@ export default function ButtonsPage() {
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         onMouseEnter={(e) => {
@@ -136,7 +136,7 @@ export default function ButtonsPage() {
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             opacity: 0.5,
                             cursor: "not-allowed",
                         }}
@@ -154,7 +154,7 @@ export default function ButtonsPage() {
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: loadingStates["primary-loading"] ? "wait" : "pointer",
                             opacity: loadingStates["primary-loading"] ? 0.8 : 1,
                         }}
@@ -363,7 +363,7 @@ export default function ButtonsPage() {
                         style={{
                             backgroundColor: "var(--destructive-default)",
                             color: "var(--destructive-text)",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             height: "30px",
                             padding: "0 12px",
                             fontSize: "12px",
@@ -384,7 +384,7 @@ export default function ButtonsPage() {
                         style={{
                             backgroundColor: "var(--destructive-default)",
                             color: "var(--destructive-text)",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
@@ -405,7 +405,7 @@ export default function ButtonsPage() {
                         style={{
                             backgroundColor: "var(--destructive-default)",
                             color: "var(--destructive-text)",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             height: "36px",
                             padding: "0 16px",
                             fontSize: "14px",
@@ -443,7 +443,7 @@ export default function ButtonsPage() {
                             color: "var(--primary-text)",
                             width: "30px",
                             height: "30px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         title="Add"
@@ -464,7 +464,7 @@ export default function ButtonsPage() {
                             color: "var(--primary-text)",
                             width: "36px",
                             height: "36px",
-                            border: "none",
+                            border: "1px solid rgba(0, 0, 0, 0.1)",
                             cursor: "pointer",
                         }}
                         title="Add"

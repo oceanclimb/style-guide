@@ -19,7 +19,7 @@ const pageTitles: Record<string, string> = {
     "/buttons": "Buttons",
     "/feedback": "Feedback",
     "/navigation": "Navigation",
-    "/overlays": "Overlays",
+    "/modals": "Modals",
     "/data-display": "Data Display",
     "/accessibility": "Accessibility",
 };
